@@ -24,5 +24,5 @@ data class Credit(
     @Enumerated(EnumType.STRING)
     val status: Status = Status.IN_PROGRESS,
     @ManyToOne
-    val customer: Customer?,
+    var customer: Customer?,
 )

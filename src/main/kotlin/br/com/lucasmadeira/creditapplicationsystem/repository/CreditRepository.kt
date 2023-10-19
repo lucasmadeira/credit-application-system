@@ -1,4 +1,4 @@
-package br.com.lucasmadeira.creditapplicationsystem
+package br.com.lucasmadeira.creditapplicationsystem.repository
 
 import br.com.lucasmadeira.creditapplicationsystem.entity.Credit
 import org.springframework.data.jpa.repository.JpaRepository

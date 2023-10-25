@@ -11,18 +11,18 @@ import java.util.*
 data class Credit(
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    val id:Long?,
+    var id:Long?,
     @Column(nullable = false, unique = true)
-    val creditCode: UUID = UUID.randomUUID(),
+    var creditCode: UUID = UUID.randomUUID(),
     @Column(nullable = false)
-    val creditValue: BigDecimal = BigDecimal.ZERO,
+    var creditValue: BigDecimal = BigDecimal.ZERO,
     @Column(nullable = false)
-    val dayFirstInstallment: LocalDate,
+    var dayFirstInstallment: LocalDate,
     @Column(nullable = false)
-    val numberOfInstallments: Int,
+    var numberOfInstallments: Int,
 
     @Enumerated(EnumType.STRING)
-    val status: Status = Status.IN_PROGRESS,
+    var status: Status = Status.IN_PROGRESS,
     @ManyToOne
     var customer: Customer?,
 )

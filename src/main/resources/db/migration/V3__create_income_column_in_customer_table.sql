@@ -1,0 +1,1 @@
+ALTER TABLE customer ADD COLUMN income NUMERIC(10,2)

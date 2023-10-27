@@ -3,6 +3,7 @@ package br.com.lucasmadeira.creditapplicationsystem.controller
 import br.com.lucasmadeira.creditapplicationsystem.dto.CustomerDTO
 import br.com.lucasmadeira.creditapplicationsystem.dto.CustomerUpdateDto
 import br.com.lucasmadeira.creditapplicationsystem.dto.CustomerView
+import br.com.lucasmadeira.creditapplicationsystem.entity.Customer
 import br.com.lucasmadeira.creditapplicationsystem.service.impl.CustomerService
 import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
@@ -25,9 +26,9 @@ class CustomerResource(
 ) {
 
     @PostMapping
-    fun saveCustomer(@RequestBody @Valid customerDTO: CustomerDTO): ResponseEntity<String>{
-        val savedCustomer = this.customerService.save(customerDTO.toEntity())
-        return ResponseEntity.ok("Customer ${savedCustomer.id} saved!")
+    fun saveCustomer(@RequestBody @Valid customerDTO: CustomerDTO): ResponseEntity<CustomerView>{
+        val savedCustomer : Customer  = this.customerService.save(customerDTO.toEntity())
+        return ResponseEntity.status(HttpStatus.CREATED).body(CustomerView(savedCustomer))
     }
 
     @GetMapping("/{id}")

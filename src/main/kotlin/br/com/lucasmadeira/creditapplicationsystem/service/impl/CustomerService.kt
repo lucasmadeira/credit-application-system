@@ -14,7 +14,7 @@ class CustomerService(
 
 
     override fun findById(id: Long): Customer =
-        this.customerRepository.findById(id).orElseThrow{throw BussinessException("ID $id not found")}
+        this.customerRepository.findById(id).orElseThrow{throw BussinessException("Id $id not found")}
 
 
     override fun delete(id: Long) {

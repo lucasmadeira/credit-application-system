@@ -1,6 +1,7 @@
 package br.com.lucasmadeira.creditapplicationsystem.service.impl
 
 import br.com.lucasmadeira.creditapplicationsystem.entity.Credit
+import br.com.lucasmadeira.creditapplicationsystem.exception.BussinessException
 import br.com.lucasmadeira.creditapplicationsystem.repository.CreditRepository
 import br.com.lucasmadeira.creditapplicationsystem.repository.CustomerRepository
 import br.com.lucasmadeira.creditapplicationsystem.service.ICreditService
@@ -14,7 +15,7 @@ class CreditService(
     override fun save(credit: Credit): Credit {
         credit.apply {
             customer = customerRepository.findById(credit.customer?.id!!)
-                .orElseThrow{throw RuntimeException("Customer not found")}
+                .orElseThrow{throw BussinessException("Customer not found")}
         }
         return this.creditRepository.save(credit)
     }
@@ -26,6 +27,6 @@ class CreditService(
       val credit: Credit = this.creditRepository.findByCreditCode(creditCode)
           ?: throw IllegalArgumentException("Credit not found with creditcode $creditCode")
 
-      return if(credit.customer?.id == customerID)credit else throw RuntimeException("Contact admin")
+      return if(credit.customer?.id == customerID)credit else throw BussinessException("Contact admin")
     }
 }
